@@ -1,8 +1,9 @@
 class Solution {
 public:
     int findRepeatNumber(vector<int>& nums) {
-    //时间复杂度n*n
-    /*for(int i=0;i<nums.size();i++){
+    
+    //时间复杂度O(n*n)
+    for(int i=0;i<nums.size();i++){
         for(int j=i+1;j<nums.size();j++){
             if(nums[i]==nums[j])
             return nums[i];
@@ -10,10 +11,10 @@ public:
     }
     return 0;
   }
-};*/
-    //时间复杂度nlogn
-       sort(nums.begin(), nums.end()); // 对nums进行升序排序
-       for(int i=0; i<nums.size(); i++)
+};
+   //时间复杂度O(nlogn)
+   sort(nums.begin(), nums.end()); // 对nums进行升序排序
+   for(int i=0; i<nums.size(); i++)
        {
             if(nums[i] == nums[i+1])
             return nums[i]; 
@@ -21,3 +22,4 @@ public:
         return -1;
     }
 };
+
