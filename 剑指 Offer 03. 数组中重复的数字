@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findRepeatNumber(vector<int>& nums) {
-    
+    //四种方法
     //时间复杂度O(n*n)
     for(int i=0;i<nums.size();i++){
         for(int j=i+1;j<nums.size();j++){
@@ -12,7 +12,7 @@ public:
     return 0;
   }
 };
-   //时间复杂度O(nlogn)
+   //排序，时间复杂度O(nlogn)
    sort(nums.begin(), nums.end()); // 对nums进行升序排序
    for(int i=0; i<nums.size(); i++)
        {
@@ -22,4 +22,30 @@ public:
         return -1;
     }
 };
-
+//hashset,时间复杂度O(n),空间复杂度O(n)
+    unordered_set<int> m;
+    for(int i : nums)
+    {
+        if(m.count(i)==0)
+          m.insert(i);
+        else
+          return i;
+    }
+    return 0;
+    }
+};
+//原地交换，时间复杂度O(n),空间复杂度O(1),最优
+    int findRepeatNumber(vector<int>& nums) {
+    for(int i=0;i<nums.size();i++){
+        while(i!=nums[i]){
+            if(nums[i]!=nums[nums[i]]){
+                int temp=nums[i];
+                nums[i]=nums[temp];
+                nums[temp]=temp;
+            }else
+            return nums[i];
+        }
+    }
+    return -1;
+  }
+};
