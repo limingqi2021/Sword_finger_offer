@@ -1,0 +1,27 @@
+//find，replace用法
+class Solution {
+public:
+    string replaceSpace(string s) {
+       int pos=s.find(" ");
+        while(pos!=-1){
+        s=s.replace(pos,1,"%20");
+        pos=s.find(" ");
+        }
+        
+        return s;
+    }
+};
+//用时超过100%
+class Solution {
+public:
+    string replaceSpace(string s) {
+        string s1;
+        for(auto c: s){
+            if(c==' ')
+            s1+="%20";
+            else
+            s1+=c;
+        }
+        return s1;
+    }
+};
