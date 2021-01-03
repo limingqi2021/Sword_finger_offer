@@ -1,0 +1,17 @@
+//二分法，O(logn)
+class Solution {
+public:
+    int minArray(vector<int>& numbers) {
+        int i=0,j=numbers.size()-1,pivot;
+        while(i<j){
+            pivot=(i+j)/2;
+            if(numbers[pivot]<numbers[j])
+                j=pivot;
+            else if(numbers[pivot]>numbers[j])
+                i=pivot+1;
+            else
+                j--;
+        }
+        return numbers[i];
+    }
+};
