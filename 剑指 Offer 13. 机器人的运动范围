@@ -1,0 +1,23 @@
+//dfs
+class Solution {
+public:   
+    int vis[101][101]={0};
+    int movingCount(int m, int n, int k) {
+        return dfs(0,0,m,n,k);
+    }
+    int dfs(int x,int y,int m,int n,int k){
+        if(x<0||y<0||x>=m||y>=n||vis[x][y]||sum(x)+sum(y)>k)
+            return 0;
+        vis[x][y]=1;
+        //return dfs(x-1,y,m,n,k)+dfs(x,y-1,m,n,k)+dfs(x+1,y,m,n,k)+dfs(x,y+1,m,n,k)+1;
+        return dfs(x+1,y,m,n,k)+dfs(x,y+1,m,n,k)+1;
+    }
+    int sum(int i){
+        int res=0;
+        while(i){
+            res+=i%10;
+            i=i/=10;
+        }
+        return res;
+    } 
+};
