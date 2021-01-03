@@ -21,3 +21,42 @@ public:
         return res;
     } 
 };
+//bfs
+class Solution {
+public:   
+    int sum(int i){
+        int res=0;
+        while(i){
+            res+=i%10;
+            i=i/=10;
+        }
+        return res;
+    } 
+  
+        int dx[2] = {0, 1};
+        int dy[2] = {1, 0};  
+    int movingCount(int m, int n, int k) {
+        int ans=1;
+        if(k==0)
+           return 1;
+        queue<pair<int,int>> q;
+        int vis[101][101]={0};
+        //vector<vector<int>> vis(m,vector<int>(n,0));
+        q.push(make_pair(0,0));
+        while(q.size()){
+            pair<int,int> t=q.front();
+            q.pop();
+            for(int i=0;i<2;i++){
+                int tx=dx[i]+t.first;
+                int ty=dy[i]+t.second;
+           if(tx<0||tx>=m||ty<0||ty>=n||vis[tx][ty]||sum(tx)+sum(ty)>k)
+               continue;
+            //q.push(make_pair(tx, ty));
+            q.push({tx, ty});
+            vis[tx][ty] = 1;
+            ans++;
+            }   
+        }
+        return ans;
+    }
+};
