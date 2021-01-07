@@ -62,3 +62,36 @@ public:
 		res.push_back(num);
         }
 };
+//递归
+class Solution {
+public:
+	vector<int> res;
+	vector<int> printNumbers(int n) {
+    if(n<=0)
+        return res;
+    string number(n,'0');
+    for(int i=0;i<=9;i++){
+        number[0]=i+'0';
+        pertmutationNumbers(number,n,1);
+    }
+    return res;
+    }
+    void pertmutationNumbers(string&number,int length,int index){
+        if(index==length){
+            saveNumber(number);
+            return;
+        }
+        else{
+            for(int i=0;i<=9;i++){
+                number[index]='0'+i;
+                pertmutationNumbers(number,length,index+1);
+            }
+        }
+    }
+    void saveNumber(string number){
+        string tempStr(number.size(),'0');
+        cout<<stoi(number)<<" ";
+        if(number!=tempStr)
+        res.push_back(stoi(number));
+    }
+};
