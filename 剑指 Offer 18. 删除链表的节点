@@ -1,0 +1,27 @@
+//非递归
+class Solution {
+public:
+    ListNode* deleteNode(ListNode* head, int val) {
+        if(head==NULL)
+            return head;
+        if(head->val==val)
+            return head->next;
+        ListNode* res=head;
+        while(res->next!=NULL&&res->next->val!=val)
+            res=res->next;
+        res->next=res->next->next;
+        return head;
+    }
+};
+//递归
+class Solution {
+public:
+    ListNode* deleteNode(ListNode* head, int val) {
+        if(head==NULL)
+            return head;
+        if(head->val==val)
+            return head->next;
+        head->next=deleteNode(head->next,val);
+        return head;
+    }
+};
