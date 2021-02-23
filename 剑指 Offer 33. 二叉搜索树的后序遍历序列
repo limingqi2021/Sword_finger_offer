@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool verifyPostorder(vector<int>& postorder) {
+        return recur(postorder,0,postorder.size()-1);
+    }
+    bool recur(vector<int> postorder,int left,int right){
+        if(left>=right)
+            return true;
+        int mid=left;
+        int root=postorder[right];
+        while(postorder[mid]<root)
+            mid++;
+        int temp=mid;
+        while(temp<right){
+            if(postorder[temp++]<root)
+                return false;
+        }
+    return recur(postorder,left,mid-1)&&recur(postorder,mid,right-1);
+    }
+};
