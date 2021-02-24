@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<string> permutation(string s) {
+        if(s.size()==0)
+        return {};
+        sort(s.begin(),s.end());
+        vector<string> res;
+        vector<bool> used(s.size(),false);
+        string track;
+        backTrack(res,s,track,used);
+        return res;
+    }
+    void backTrack(vector<string> &res,string &s,string &track,vector<bool> &used){
+        if(track.size()==s.size()){
+            res.push_back(track);
+            return;
+        }
+        for(int i=0;i<s.size();i++){
+            if(used[i])
+            continue;
+            if(i>0&&!used[i-1]&&s[i-1]==s[i])
+            continue;
+            used[i]=true;
+            track.push_back(s[i]);
+            backTrack(res,s,track,used);
+            track.pop_back();
+            used[i]=false;
+        }
+    }
+};
