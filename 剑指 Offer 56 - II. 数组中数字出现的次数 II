@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        vector<int> m(32,0);
+        int n=0;
+        for(int i:nums){
+            for(int j=31;j>=0;j--){
+                m[j]+=i&1;
+                i>>=1;
+            }
+        }
+        for(int i=31;i>=0;i--){
+            if(m[i]%3!=0)
+            n+=pow(2,(31-i));
+        }
+        return n;
+    }
+};
