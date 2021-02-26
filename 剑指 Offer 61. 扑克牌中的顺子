@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isStraight(vector<int>& nums) {
+
+        // int map[14]={0};
+        // int Maxval=-1,Minval=14;
+        // for(int n:nums){
+        //     if(n==0) continue;
+        //     map[n]++;
+        //     Minval=min(Minval,n);
+        //     Maxval=max(Maxval,n);
+        //     if(map[n]>1)
+        //         return false;
+        // }
+        //return Maxval-Minval<5;
+
+        sort(nums.begin(),nums.end());
+        int index=0;
+        for(int i=0;i<5;i++){
+            if(nums[i]==0)
+                index++;
+            else if(i>0){
+                if(nums[i]==nums[i-1])
+                return false;
+            }
+        }
+        return nums[4]-nums[index]<5;
+    }
+};
