@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int add(int a, int b) {
+        while(b!=0){
+            int d=a^b;
+            int c=(unsigned int)(a&b)<<1;
+            a=d;
+            b=c;
+        }
+        return a;
+    }
+};
