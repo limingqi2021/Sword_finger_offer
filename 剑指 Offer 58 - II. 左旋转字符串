@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string reverseLeftWords(string s, int n) {
+        if(n>s.size()||s.size()<2||n==0)
+            return s;
+        // reverse(s.begin()+n,s.end());
+        // reverse(s.begin(),s.end());
+        // reverse(s.end()-n,s.end());
+        Reverse(s,n,s.size()-1);
+        Reverse(s,0,s.size()-1);
+        Reverse(s,s.size()-n,s.size()-1);
+        return s;
+    }
+    void Reverse(string &s,int start,int end){
+        if(end>=s.size()||start>end)
+            return;
+        while(start<end){
+            char temp=s[start];
+            s[start]=s[end];
+            s[end]=temp;
+            end--;
+            start++;
+        }
+    }
+};
