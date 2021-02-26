@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int strToInt(string str) {
+        int res=0,sign=1,n=str.size();
+        int i=0;
+        if(n<=0)
+            return res;
+        while(str[i]==' ')
+        {
+            i++;
+            if(i==n)
+            {
+                return res;
+            }
+        }
+        if(str[i]=='-'){
+            sign=-1;
+            i++;
+        }
+        else if(str[i]=='+'){
+            sign=1;
+            i++;
+        }
+        int edge=INT_MAX/10;
+        while(i<n){
+            if(str[i]>'9'||str[i]<'0')
+                break;
+            int cur=str[i]-'0';
+            if(res>edge||(res==edge)&&cur>7)
+            {
+                return sign==-1?INT_MIN:INT_MAX;
+            }
+            res=res*10+cur;
+            i++;
+        }
+        return res*sign;
+    }
+};
